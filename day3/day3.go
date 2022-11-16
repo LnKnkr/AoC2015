@@ -34,6 +34,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println("Day 3")
 	oneSanta(file)
 	twoSanta(file)
 }
@@ -58,7 +59,7 @@ func oneSanta(file []byte) {
 			}
 		}
 	}
-	fmt.Printf("%d", amount)
+	fmt.Printf("Santa alone will give presents to '%d' houses\n", amount)
 }
 
 func twoSanta(file []byte) {
@@ -87,5 +88,5 @@ func twoSanta(file []byte) {
 			}
 		}
 	}
-	fmt.Printf("%d", amount)
+	fmt.Printf("but with robo-santa together they visits '%d' houses", amount)
 }
