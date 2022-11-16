@@ -11,7 +11,7 @@ public class main {
         while (scanner.hasNext()) {
             list.add(new present(scanner.next()));
         }
-        
+
         int[] out = calculateResults(list);
         System.out.printf("Day 2\nThe elves should buy '%d' foot wrapping paper\n" +
                 "The elves will use a total of '%d' foot ribbon\n", out[0], out[1]);
