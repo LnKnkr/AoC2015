@@ -11,13 +11,17 @@ public class main {
         while (scanner.hasNext()) {
             list.add(new present(scanner.next()));
         }
-        System.out.printf("Day 2 - Part 1\nThe elves should buy '%d' foot wrapping paper\n", totalAmountWrappingPaper(list));
+        
+        int[] out = calculateResults(list);
+        System.out.printf("Day 2\nThe elves should buy '%d' foot wrapping paper\n" +
+                "The elves will use a total of '%d' foot ribbon\n", out[0], out[1]);
     }
 
-    public static int totalAmountWrappingPaper(ArrayList<present> list) {
-        int amount = 0;
+    public static int[] calculateResults(ArrayList<present> list) {
+        int[] amount = new int[2];
         for (present p : list) {
-            amount += p.totalPaper;
+            amount[0] += p.totalPaper;
+            amount[1] += p.lengthRibbon;
         }
         return amount;
     }

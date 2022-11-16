@@ -1,30 +1,30 @@
+import java.util.ArrayList;
+
 public class present {
-    int length;
-    int width;
-    int height;
+
+    ArrayList<Integer> dimensions;
     int totalPaper;
+    int lengthRibbon;
 
     public present(String input) {
         String[] metrics = input.split("x");
-        length = Integer.parseInt(metrics[0]);
-        width = Integer.parseInt(metrics[1]);
-        height = Integer.parseInt(metrics[2]);
+        dimensions = new ArrayList<>();
+        dimensions.add(Integer.parseInt(metrics[0]));
+        dimensions.add(Integer.parseInt(metrics[1]));
+        dimensions.add(Integer.parseInt(metrics[2]));
+        dimensions.sort(null);
         calculateTotalPaper();
+        calculateRibbonLength();
     }
 
     public void calculateTotalPaper() {
-        int lengthWidth = length * width;
-        int widthHeight = width * height;
-        int heightLength = height * length;
+        totalPaper = 3 * (dimensions.get(0) * dimensions.get(1));
+        totalPaper += 2 * (dimensions.get(0) * dimensions.get(2));
+        totalPaper += 2 * (dimensions.get(1) * dimensions.get(2));
+    }
 
-        if (lengthWidth <= widthHeight && lengthWidth <= heightLength)
-            totalPaper = lengthWidth;
-        if (widthHeight <= lengthWidth && widthHeight <= heightLength)
-            totalPaper = widthHeight;
-        if (heightLength <= widthHeight && heightLength <= lengthWidth)
-            totalPaper = heightLength;
-        System.out.println(totalPaper);
-
-        totalPaper += (2 * lengthWidth) + (2 * heightLength) + (2 * widthHeight);
+    public void calculateRibbonLength(){
+        lengthRibbon = 2*dimensions.get(0) + 2* dimensions.get(1);
+        lengthRibbon += dimensions.get(0) * dimensions.get(1) * dimensions.get(2);
     }
 }
