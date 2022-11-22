@@ -16,23 +16,25 @@ func main() {
 }
 
 func lookAndSay(bytes []byte, runs int) string {
-	sequence := string(bytes)
-	newSequence := ""
-	for i := 0; i < runs; i++ {
-		temp := ""
-		for j, r := range sequence {
-			if j == 0 {
-				temp += string(r)
-			} else if r == rune(temp[0]) {
-				temp += string(r)
-			} else if r != rune(temp[0]) {
-				newSequence += fmt.Sprintf("%d%s", len(temp), string(temp[0]))
-				temp = string(r)
-			}
-		}
-		newSequence += fmt.Sprintf("%d%s", len(temp), string(temp[0]))
-		sequence = newSequence
-		newSequence = ""
+	if runs == 0 {
+		return string(bytes)
 	}
-	return sequence
+	foo := []byte{}
+	repeatCount := 1
+	prev := byte(0)
+	for j, b := range bytes {
+		if j == 0 {
+			prev = b
+		} else if b == prev {
+			prev = b
+			repeatCount++
+		} else if b != prev {
+			foo = append(foo, byte(repeatCount+48), byte(prev))
+			repeatCount = 1
+			prev = b
+		}
+	}
+	foo = append(foo, byte(repeatCount+48), byte(prev))
+
+	return lookAndSay(foo, runs-1)
 }
