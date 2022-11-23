@@ -12,7 +12,9 @@ func main() {
 	}
 
 	sequence := lookAndSay(bytes, 40)
-	fmt.Printf("Day 10 - Part 1\nThe sequence is %d long", len(sequence))
+	fmt.Printf("Day 10 - Part 1\nThe sequence is %d long\n", len(sequence))
+	sequence = lookAndSay(bytes, 50)
+	fmt.Printf("Day 10 - Part 2\nThe sequence is %d long\n", len(sequence))
 }
 
 func lookAndSay(bytes []byte, runs int) string {
